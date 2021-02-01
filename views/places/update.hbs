@@ -1,0 +1,17 @@
+<h1>Update a resource</h1>
+
+<form method ="POST">
+<label for="input-name">Name</label>
+<input type="text" id="input-name" name="name" placeholder="Place" value="{{place.name}}">
+
+<label for="input-type"Type of Place</label>
+<select name="type" id="input-type" value="{{place.type}}">
+<option value="selected disabled">Type</option>
+<option value="coffee_shop">Coffee Shop</option>
+<option value="bookstore">Bookstore</option>
+</select>
+
+<button>Update</button>
+
+
+</form>

@@ -52,12 +52,50 @@ router.get('/create/places/:id', (req, res, next) => {
     });
 });
 
+router.get('/create/places/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+  Place.findById(id)
+    .then((place) => {
+      res.render('places/confirm-deletion', { place: place });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 router.post('/create/places/:id/delete', (req, res, next) => {
   const id = req.params.id;
   Place.findByIdAndDelete(id)
     .then(() => {
-      console.log(Deleted);
+      //console.log(Deleted);
       res.redirect('/create/places');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.get('/create/places/:id/update', (req, res, next) => {
+  const id = req.params.id;
+  Place.findById(id)
+    .then((place) => {
+      res.render('places/update', { place: place });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.post('/create/places/:id/update', (req, res, next) => {
+  const id = req.params.id;
+  const data = req.body;
+  Place.findByIdAndUpdate(id, {
+    name: data.name,
+    type: data.type
+  })
+    .then((plan) => {
+      res.redirect('/create/places');
+      //res.redirect(`/create/places/$(place._id}`);
     })
     .catch((error) => {
       next(error);
