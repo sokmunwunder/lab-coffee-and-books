@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 
 const placeSchema = new mongoose.Schema(
   {
-    name: {
+    name: String,
+    type: {
       type: String,
       enum: ['coffee_shop', 'bookstore'],
       required: true

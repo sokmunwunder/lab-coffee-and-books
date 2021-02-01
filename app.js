@@ -34,6 +34,8 @@ app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
+app.use('/create', indexRouter);
+app.use('/create/:id', indexRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
