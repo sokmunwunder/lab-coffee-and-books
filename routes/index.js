@@ -22,7 +22,7 @@ router.post('/create', (req, res, next) => {
     type: data.type
   })
     .then((place) => {
-      res.redirect('places');
+      res.redirect('/create/places');
       //res.redirect(`/create/${place._id}`);
     })
     .catch((error) => {
@@ -30,7 +30,7 @@ router.post('/create', (req, res, next) => {
     });
 });
 
-router.get('/places', (req, res, next) => {
+router.get('/create/places', (req, res, next) => {
   Place.find({})
     .then((places) => {
       res.render('places/display', { places });
@@ -40,11 +40,24 @@ router.get('/places', (req, res, next) => {
     });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/create/places/:id', (req, res, next) => {
   const id = req.params.id;
+  console.log(id);
   Place.findById(id)
     .then((place) => {
-      res.render('place/single');
+      res.render('places/single', { place: place });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.post('/create/places/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+  Place.findByIdAndDelete(id)
+    .then(() => {
+      console.log(Deleted);
+      res.redirect('/create/places');
     })
     .catch((error) => {
       next(error);

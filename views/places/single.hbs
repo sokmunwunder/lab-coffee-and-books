@@ -1,6 +1,10 @@
-<h1>{{place.name}}</h1>
-<h2>{{place.type}}</h2>
+{{!--<h1>{{name}}</h1>
+<h2>{{type}}</h2>--}}
 
-<br>
+
 {{!--<a href="/places/{{place._id}}/delete">Delete Place</a>--}}
 
+<h2>{{place.name}}</h2>
+<h3>{{place.type}}</h3>
+
+<a href="/create/places/{{place._id}}/delete">Delete</a>
