@@ -5,10 +5,6 @@ const router = new Router();
 
 const Place = require('./../models/place');
 
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Hello World!' });
-});
-
 router.get('/create', (req, res, next) => {
   res.render('places/create');
 });
@@ -22,7 +18,8 @@ router.post('/create', (req, res, next) => {
     type: data.type
   })
     .then((place) => {
-      res.redirect('places');
+      //res.render('places/create');
+      res.redirect('/places');
       //res.redirect(`/create/${place._id}`);
     })
     .catch((error) => {
@@ -40,15 +37,38 @@ router.get('/places', (req, res, next) => {
     });
 });
 
-router.get('/:id', (req, res, next) => {
+/*router.get('/places/:id', (req, res, next) => {
   const id = req.params.id;
+  console.log(id);
   Place.findById(id)
     .then((place) => {
-      res.render('place/single');
+      res.render('places/single');
     })
     .catch((error) => {
       next(error);
     });
 });
+
+router.get('/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+  Place.findById(id)
+    .then((place) => {
+      res.render('places/confirm-deletion', { place: place });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.post('/:id/delete', (req, res, next) => {
+  let id = req.params.id;
+  Place.findByIdAndRemove(id)
+    .then(() => {
+      res.redirect('places/display');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});*/
 
 module.exports = router;

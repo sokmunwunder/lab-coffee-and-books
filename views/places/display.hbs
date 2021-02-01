@@ -2,7 +2,26 @@
 
 <div>
     <h2>{{name}}</h2>
-    <p>{{type}}</p>
+    <h3>{{type}}</h3>
+
+    <a href="/places/{{_id}}">Edit</a>
+
+{{!--<a href="/{{_id}}/update">Update</a>
+<a href="/{{_id}}/delete">Delete</a>--}}
+
+
 </div>
+{{!--<form action="/update" method="POST">
+<button>Update</button>
+</form>--}}
+
+{{!--<a href="/{{place._id}}">Single Place</a>--}}
+{{!--<a href="/update">Update</a>--}}
+
+{{!--<a href="/places/{{place._id}}/delete">Delete Resource</a>--}}
+{{!--<form action="POST" method="/places/{{place._id}}/delete">
+<button>Delete</button>
+</form>--}}
+
 
 {{/each}}
