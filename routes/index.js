@@ -22,8 +22,18 @@ router.post('/create', (req, res, next) => {
     type: data.type
   })
     .then((place) => {
-      res.redirect('index');
+      res.redirect('places');
       //res.redirect(`/create/${place._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.get('/places', (req, res, next) => {
+  Place.find({})
+    .then((places) => {
+      res.render('places/display', { places });
     })
     .catch((error) => {
       next(error);
